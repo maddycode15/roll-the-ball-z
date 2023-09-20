@@ -30,6 +30,14 @@ public class PlayerController : MonoBehaviour
         rb.AddForce(movement * speed);  // this causes the force to multiplied by the speed variable, it does this by adding force which is multiplied by the value of the speed variable
     }
 
+    private void OnTriggerEnter(Collider other)   // on trigger enter means that the code in the void will happen when the trigger is entered (which means which means detected) the trigger is what is in the bracets, which in this case is a collider named other
+    {
+        if(other.gameObject.CompareTag("PickUp"))  // this line makes the that the code below it in the brackets only happens if the game object below it has the tag pick up.
+        {
+            other.gameObject.SetActive(false);  // this is the code that runs when the collider trigger is collected. it deactivates the game object by selecting set active, a property that determines if the game object is active to false making the fact that it is active untrue
+        }
+         
+    }
 }
 
 
@@ -40,6 +48,8 @@ public class PlayerController : MonoBehaviour
 // public means that the value is acessable throughout other scripts in the program while or at least it is viewable in the editor.
 // local means that it is only acessable through the script that it is written on
 
+// string is a variable type that means its a word. i think its means like a string of numbers
+// int is short for interger this is also a number
 //floats. float is short for floating point. a floating point is a type of decimal value that is more spesific (more information needed here)
 
 // void functions are methods that do not return a value. 
