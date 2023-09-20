@@ -7,7 +7,9 @@ using UnityEngine.InputSystem;   //this is the part of the code that lets unity 
 public class PlayerController : MonoBehaviour
 {
     public float speed = 10; // this public float creates a float and makes it public. being public allows the value to be controlled by the unity editor. this one is going to control spe
-    private Rigidbody rb;  // private means that this script can not be accessed from the inspector or from other scripts. public would allow it to be accessed this way
+    
+   private Rigidbody rb;  // private means that this script can not be accessed from the inspector or from other scripts. public would allow it to be accessed this way
+    private int count; // this creates a private integer variable in this script. the variable will be used to hold a number and that number will be used to count how many PickUP cubes have been collected.
     private float movementX;
     private float movementY; 
 
@@ -15,6 +17,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         rb =GetComponent<Rigidbody>();  // this gives the rb variable information attached to the rigidbody component attached to this game object. (makes the variable = to the physics thing attached to the game object)
+        count = 0;  // this line sets the starting value of the count variable. it starts at zero because there are zero cubes collected at the start
     }
     void OnMove(InputValue movementValue)  //the void part of this function (on move in this case) means that it wont return any values. (movement value captures the movement of the ball on the x and y axis) this data is stored in a vector2 variable
     {
@@ -35,6 +38,7 @@ public class PlayerController : MonoBehaviour
         if(other.gameObject.CompareTag("PickUp"))  // this line makes the that the code below it in the brackets only happens if the game object below it has the tag pick up.
         {
             other.gameObject.SetActive(false);  // this is the code that runs when the collider trigger is collected. it deactivates the game object by selecting set active, a property that determines if the game object is active to false making the fact that it is active untrue
+            count = count + 1; // this line changes the value of the count variabke to the current value of count plus 1, essentially this just adds 1 to the current count each time a cube is picked up
         }
          
     }
