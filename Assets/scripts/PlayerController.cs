@@ -4,6 +4,8 @@ using Unity.VisualScripting;
 using UnityEngine;               // this is the part of the code that tells visual studio to comunicate with the unity engine
 using UnityEngine.InputSystem;   //this is the part of the code that lets unity comunicate with the input system
 using TMPro;
+using UnityEngine.SceneManagement;
+
 
 public class PlayerController : MonoBehaviour
 {
@@ -31,7 +33,13 @@ public class PlayerController : MonoBehaviour
 
     void SetCountText() // this is a method, you are using a method to manage the count text function
     {
-        CountText.text = "Count: " + count.ToString();    }  // CountText.text is the actual text displayed in game, this line of code says it should display, count: plus the string value of the count variable
+        CountText.text = "Count: " + count.ToString();    // CountText.text is the actual text displayed in game, this line of code says it should display, count: plus the string value of the count variable
+   if (count >=6)
+        {
+            SceneManager.LoadScene("WinScreen");
+        }
+    }  
+
 
     void FixedUpdate()
     {
